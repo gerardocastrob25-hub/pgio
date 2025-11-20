@@ -1,0 +1,14 @@
+<%- include("_header") -%>
+
+<h3>Click to export all database records to export.csv</h3>
+
+<form action="/output" method="post">
+  <input type="submit" value="Download">
+</form>
+
+<% if (message.substring(0, 5) === "Error") { %>
+  <h2>Error!</h2>
+  <p><%= message %></p>
+<% } %>
+
+<%- include("_footer") -%>

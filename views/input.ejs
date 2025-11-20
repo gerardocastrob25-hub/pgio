@@ -1,0 +1,27 @@
+<%- include("_header") -%>
+
+<h1>Select a file with products for Database Insert</h1>
+
+<form>
+  <input type="file" name="filename" required><p></p>
+  <input type="submit">
+</form>
+
+<p id="result"></p>
+
+<script>
+document.querySelector("form").addEventListener("submit", e => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+
+  fetch("/input", {
+    method: "POST",
+    body: formData
+  })
+  .then(r => r.text())
+  .then(data => document.getElementById("result").innerText = data)
+  .catch(err => document.getElementById("result").innerText = err.message);
+});
+</script>
+
+<%- include("_footer") -%>
